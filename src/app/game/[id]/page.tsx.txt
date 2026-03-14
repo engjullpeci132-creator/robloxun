@@ -1,0 +1,53 @@
+import { notFound } from "next/navigation"
+
+const games = [
+  {
+    id: 1,
+    name: "Adopt Me Copy",
+    players: 523,
+    description: "A copy of Adopt Me style gameplay."
+  },
+  {
+    id: 2,
+    name: "Brookhaven Copy",
+    players: 812,
+    description: "A roleplay town game inspired by Brookhaven."
+  },
+  {
+    id: 3,
+    name: "Blade Ball Copy",
+    players: 342,
+    description: "Dodge and hit the ball in this action game."
+  }
+]
+
+export default function GamePage({ params }: { params: { id: string } }) {
+  const game = games.find((g) => g.id === Number(params.id))
+
+  if (!game) {
+    return notFound()
+  }
+
+  return (
+    <main style={{ padding: "40px" }}>
+      <h1 style={{ fontSize: "32px" }}>{game.name}</h1>
+
+      <p style={{ marginTop: "10px" }}>{game.description}</p>
+
+      <p style={{ marginTop: "10px" }}>
+        Players: {game.players}
+      </p>
+
+      <a
+        href="/"
+        style={{
+          display: "inline-block",
+          marginTop: "20px",
+          color: "#4da3ff"
+        }}
+      >
+        ← Back to games
+      </a>
+    </main>
+  )
+}
